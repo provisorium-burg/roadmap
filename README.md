@@ -8,7 +8,7 @@ Das Ziel des Reallabors ist die schrittweise Implementierung einer Nachhaltigkei
 
 ## 🚀 Live-Ansicht
 Die interaktive Roadmap ist unter folgendem Link erreichbar:
-👉 [https://provisorium-burg.github.io](https://provisorium-burg.github.io)
+👉 [PRovisorium Roadmap](https://provisorium-burg.github.io/roadmap/)
 
 ## 🛠 Technologie & Entwicklung
 - **Framework:** [React](https://reactjs.org) mit [Vite](https://vitejs.dev)
@@ -21,4 +21,13 @@ Die interaktive Roadmap ist unter folgendem Link erreichbar:
 - `src/components/`: Enthält die Logik für die Zeitleiste und die UI-Elemente.
 
 ---
-*Erstellt im Rahmen des Nachhaltigkeits-Projekts der BURG.*
+
+## ⚖️ Lizenz & Nutzungsrechte
+
+Dieses Projekt wurde im Rahmen des Projekts "Provisorium - Hochschule als Reallabor für Nachhaltigkeit" an der **BURG Giebichenstein Kunsthochschule Halle** entwickelt.
+
+- **Software/Code:** Lizenziert unter der [MIT License](https://opensource.org).
+- **Inhalte & Design:** Alle Rechte liegen bei der Hochschule bzw. dem Projektteam „Provisorium“, sofern nicht anders angegeben.
+
+---
+Copyright (c) 2024–2026 Projektteam Provisorium / BURG Giebichenstein Kunsthochschule Halle (Saale)
