@@ -1,5 +1,6 @@
 import { Card } from "./ui/card";
-import { Calendar, Target, Leaf, Building2 } from "lucide-react";
+import { AnimatedCounter } from "./ui/animated-counter"; 
+import { Calendar, Target, Layers, Bookmark } from "lucide-react";
 
 interface RoadmapHeaderProps {
   projectTitle: string;
@@ -27,16 +28,19 @@ export function RoadmapHeader({ projectTitle, duration }: RoadmapHeaderProps) {
             <span className="text-lg">{duration}</span>
           </div>
         </div>
-        <div className="flex gap-4">
+        <div className="flex gap-8 justify-center items-start">
+          {/* Logo der Burg */}
           <div className="text-center">
-            <div className="flex items-center justify-center w-16 h-16 bg-white rounded-full mb-2 border-2 border-gray-200">
-              <Building2 className="w-9 h-9 text-gray-700" />
+            <div className="flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-2 overflow-hidden p-2">
+              <img src="Logo_Burg.svg" alt="Die Burg Logo" className="w-full h-full object-contain" />
             </div>
-            <div className="text-sm font-medium">Die Burg</div>
+            <div className="text-sm font-medium">Burg</div>
           </div>
-          <div className="text-center">
-            <div className="flex items-center justify-center w-16 h-16 bg-white rounded-full mb-2 border-2 border-green-200">
-              <SDGIcon />
+
+          {/* SDG Nachhaltigkeit Icon */}
+          <div className="flex flex-col items-center w-24">
+            <div className="flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-2 overflow-hidden p-1">
+              <img src="sdg.png" alt="SDG Nachhaltigkeit" className="w-full h-full object-contain" />
             </div>
             <div className="text-sm font-medium">Nachhaltigkeit</div>
           </div>
@@ -63,16 +67,31 @@ export function RoadmapHeader({ projectTitle, duration }: RoadmapHeaderProps) {
 
       <div className="mt-6 grid grid-cols-3 gap-4 text-center">
         <div className="bg-white rounded-lg p-4">
-          <div className="text-2xl font-bold text-green-600">22</div>
-          <div className="text-sm text-gray-600">Monate</div>
+              <div className="flex justify-center mb-2">
+                <Calendar className="w-6 h-6 text-olive-600 group-hover:scale-110 transition-transform" />
+              </div>
+          <div className="text-2xl font-bold text-green-600">
+            <AnimatedCounter value={22} />
+          </div>
+          <div className="text-[10px] uppercase tracking-[0.1em] text-gray-400 font-bold mt-1">Monate</div>
         </div>
         <div className="bg-white rounded-lg p-4">
-          <div className="text-2xl font-bold text-blue-600">5</div>
-          <div className="text-sm text-gray-600">Phasen</div>
+          <div className="flex justify-center mb-2">
+            <Layers className="w-6 h-6 text-olive-600 group-hover:scale-110 transition-transform" />
+          </div>
+          <div className="text-2xl font-bold text-blue-600">
+            <AnimatedCounter value={5} />
+          </div>
+          <div className="text-[10px] uppercase tracking-[0.1em] text-gray-400 font-bold mt-1">Phasen</div>
         </div>
         <div className="bg-white rounded-lg p-4">
-          <div className="text-2xl font-bold text-purple-600">6</div>
-          <div className="text-sm text-gray-600">Kategorien</div>
+          <div className="flex justify-center mb-2">
+            <Bookmark className="w-6 h-6 text-olive-600 group-hover:scale-110 transition-transform" />
+          </div>
+          <div className="text-2xl font-bold text-purple-600">
+             <AnimatedCounter value={6} />
+          </div>
+          <div className="text-[10px] uppercase tracking-[0.1em] text-gray-400 font-bold mt-1">Kategorien</div>
         </div>
       </div>      
     </Card>

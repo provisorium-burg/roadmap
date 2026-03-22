@@ -8,7 +8,7 @@ Das Ziel des Reallabors ist die schrittweise Implementierung einer Nachhaltigkei
 
 ## 🚀 Live-Ansicht
 Die interaktive Roadmap ist unter folgendem Link erreichbar:
-👉 [PRovisorium Roadmap](https://provisorium-burg.github.io/roadmap/)
+👉 [Provisorium Roadmap](https://provisorium-burg.github.io/roadmap/)
 
 ## 🛠 Technologie & Entwicklung
 - **Framework:** [React](https://reactjs.org) mit [Vite](https://vitejs.dev)
