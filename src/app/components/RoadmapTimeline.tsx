@@ -186,6 +186,54 @@ export function RoadmapTimeline({ data }: RoadmapTimelineProps) {
                 </div>
               </div>
             ))}
+
+            {/* Activities */}
+            {phase.activities && phase.activities.map((activity, activityIdx) => (
+              <div key={`activity-${activityIdx}`} className="flex gap-1 items-center mt-2 relative z-10">
+                <div className="w-48 shrink-0"></div>
+                <div className="flex-1 relative h-8">
+                  <Tooltip delayDuration={300}>
+                    <TooltipTrigger asChild>
+                      <div
+                        className="absolute flex items-center cursor-pointer group"
+                        style={{
+                          left: `${getMonthPosition(activity.date)}%`,
+                        }}
+                        onClick={() => handleItemClick(activity)}
+                      >
+                        {/* Symbol aus der Legende: Quadratisch, abgerundet, grauer Rand */}
+                        <div className="w-4 h-4 rounded border-2 border-gray-400 bg-gray-50 group-hover:scale-110 group-hover:border-olive-400 transition-all shadow-sm"></div>
+                        
+                        <div className="ml-2 text-sm font-medium text-gray-600 group-hover:text-gray-900 whitespace-nowrap">
+                          {activity.title}
+                        </div>
+                      </div>
+                    </TooltipTrigger>
+                    <TooltipContent side="top" className="w-auto max-w-sm p-3 bg-slate-900 shadow-xl border border-gray-200">
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between border-b pb-1">
+                          <p className="font-bold text-white leading-tight">
+                            {activity.title}
+                          </p>
+                          <span className="ml-4 text-[10px] font-bold uppercase px-1.5 py-0.5 bg-gray-100 text-gray-500 rounded whitespace-nowrap">
+                            {activity.type}
+                          </span>
+                        </div>
+                        <p className="text-sm text-white leading-snug">
+                          {activity.description}
+                        </p>
+                        <div className="text-[10px] text-white font-mono italic">
+                          {activity.date}
+                        </div>
+                        <div className="text-[10px] bg-gray-800 px-1.5 py-0.5 rounded text-gray-400">
+                            Klicken für Details
+                        </div>
+                      </div>
+                    </TooltipContent>
+                  </Tooltip>
+                </div>
+              </div>
+            ))}
           </div>
         ))}
 

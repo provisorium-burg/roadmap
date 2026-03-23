@@ -55,7 +55,21 @@ export const roadmapData: RoadmapData = {
           date: "2026-03",
           description: "Offizieller Start des Reallabor-Projekts"
         }
-      ]
+      ],
+      activities: [        
+        {
+          title: "Projektstart",
+          date: "2026-03",
+          type: "meeting",
+          description: "Treffen der AG Nachhaltigkeit"
+        },
+        {
+          title: "Begehung Campus Design & Kunst",
+          date: "2026-03",
+          type: "action",
+          description: "Vor-Ort-Termine mit Statusgruppen zur Identifikation von Potenzialflächen."
+        },
+      ],
     },
     {
       name: "Konzeption",
@@ -169,7 +183,27 @@ export const roadmapData: RoadmapData = {
           date: "2027-08",
           description: "Nachhaltigkeitsstrategie vom Senat verabschiedet"
         }
-      ]
+      ],
+      activities: [        
+        {
+          title: "👥 Statusgruppen-Vernetzung",
+          date: "2026-04",
+          type: "meeting",
+          description: "Erstes Treffen der Vertreter aus Werkstätten, Mensa und Verwaltung."
+        },
+        {
+          title: "📝 Ideen-Briefkasten / Online-Umfrage",
+          date: "2026-05",
+          type: "survey",
+          description: "Digitale Sammlung von Themenvorschlägen für das Jahresthema."
+        },
+        {
+          title: "🔨 Runder Tisch 'Nachhaltiges Curriculum'",
+          date: "2026-06",
+          type: "workshop",
+          description: "Fachgespräch mit Lehrenden über BNE-Module."
+        },
+      ],
     },
     {
       name: "Umsetzung",
@@ -292,7 +326,39 @@ export const roadmapData: RoadmapData = {
           date: "2027-07",
           description: "Präsentation erster Forschungsergebnisse auf Konferenz"
         }
-      ]
+      ],
+      activities: [
+        {
+        title: "Mensa-Abfall-Audit",
+        date: "2026-04",
+        type: "survey",
+        description: "Gemeinsame Sortierung und Analyse der Speisereste mit dem Mensateam zur Optimierung der Portionsgrößen."
+        },
+        {
+        title: "Workshop: Zirkuläre Werkstatt",
+        date: "2026-05",
+        type: "workshop",
+        description: "Praktische Erarbeitung von Materialkreisläufen (z. B. Holz- oder Kunststoffreste) zwischen den Ateliers und Werkstätten."
+        },
+        {
+        title: "Installation Campus-Sharing-Point",
+        date: "2026-05",
+        type: "event",
+        description: "Aufbau einer physischen Tauschbörse für Materialien und Werkzeuge am Campus Design."
+        },
+        {
+          title: "Nutzer-Interviews & Survey",
+          date: "2026-07",
+          type: "survey",
+          description: "Laufende Auswertung der ausgeführten Aktivitäten und Maßnahmen durch Befragung von Studierenden und Mitarbeitenden zur Akzeptanz und Nutzbarkeit."
+        },
+        {
+          title: "Open-Lab-Day: Materialsammlung",
+          date: "2027-10",
+          type: "event",
+          description: "Tag der offenen Tür im Reallabor, um Zwischenstände der Pilotprojekte der gesamten Hochschule zu präsentieren."
+        },
+    ]
     },
     {
       name: "Evaluation",
@@ -347,6 +413,26 @@ export const roadmapData: RoadmapData = {
           date: "2027-11",
           description: "Vollständige Projektevaluation liegt vor"
         }
+      ],
+      activities: [
+				{
+			  	title: "Runder Tisch: Impact-Check",
+			  	date: "2027-10",
+			    type: "meeting",
+			    description: "Gemeinsame Durchsicht der Kennzahlen (CO2-Einsparung, Materialverbrauch) mit der Hochschulleitung und dem Facility Management."
+				},
+				{
+			  	title: "Reflexions-Workshop 'Lessons Learned",
+			  	date: "2027-10",
+			    type: "workshop",
+			    description: "Identifikation von Hürden in der Verwaltungskommunikation und Erarbeitung von Verbesserungsvorschlägen für die Verstetigung."
+				},
+				{
+			  	title: "Review-Treffen mit Statusgruppen",
+			  	date: "2027-11",
+			    type: "meeting",
+			    description: "Abschlussgespräche mit den Werkstattleitenden und dem AStA über die Erfahrungen im Reallabor-Jahr."
+				}
       ]
     },
     {
@@ -403,6 +489,33 @@ export const roadmapData: RoadmapData = {
           date: "2027-12",
           description: "Offizieller Projektabschluss und Übergabe in Regelbetrieb"
         }
+      ],
+      activities: [
+        {
+          title: "Präsentation der Evaluationsergebnisse im Senat",
+          date: "2027-11",
+          type: "meeting",
+          description: "Vorstellung der Evaluationsergebnisse und Empfehlungen für eine dauerhafte Verankerung in der Hochschulordnung."
+        },
+        {
+          title: "Manual-Release: 22 Monate provisorische Nachhaltige Hochschule",
+          date: "2027-11",
+          type: "action",
+          description: "Veröffentlichung eines digitalen Leitfadens (Best-Practice), der als Handbuch für zukünftige Projekte an der BURG dient."
+        },
+        {
+          title: "Abschluss-Konferenz & Netzwerk-Treffen",
+          date: "2027-12",
+          type: "event",
+          description: "Vernetzung mit anderen Kunsthochschulen zum Transfer der Ergebnisse aus dem Projekt „Provisorium“."
+        },
+        {
+          title: "Übergabe-Meeting: Strukturen & Verantwortung",
+          date: "2027-12",
+          type: "meeting",
+          description: "Formelle Übergabe der erarbeiteten Prozesse (z. B. Materialmanagement) an die zuständigen Verwaltungsreferate."
+        },
+
       ]
     }
   ]
