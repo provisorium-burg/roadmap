@@ -4,6 +4,7 @@ import { RoadmapTimeline } from "./components/RoadmapTimeline";
 import { RoadmapLegend } from "./components/RoadmapLegend";
 import { RoadmapFilters } from "./components/RoadmapFilters";
 import { RoadmapGuide } from "./components/RoadmapGuide";
+import { RoadmapFeedback } from "./components/RoadmapFeedback";
 import { roadmapData } from "./data/roadmapData";
 
 export default function App() {
@@ -54,6 +55,7 @@ export default function App() {
               onReset={handleReset}
             />
             <RoadmapLegend />
+            <RoadmapFeedback />
           </div>
 
           <div className="lg:col-span-3">
