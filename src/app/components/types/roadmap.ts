@@ -20,7 +20,7 @@ export interface Milestone {
 export interface Activity {
   title: string;
   date: string; // Punktueller Zeitpunkt oder Monat
-  type: "workshop" | "meeting" | "survey" | "action" | "event"; // Zur Auswahl des Symbols
+  type: "workshop" | "meeting" | "community" | "survey" | "action" | "event"; // Zur Auswahl des Symbols
   description: string;
 }
 export interface Phase {

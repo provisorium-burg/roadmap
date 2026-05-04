@@ -4,11 +4,25 @@ import { Badge } from "./ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "./ui/dialog";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
 import { Milestone, Task, RoadmapData } from "./types/roadmap";
-import { ChevronRight, Calendar, Users, Target, CheckCircle2 } from "lucide-react";
+import { ChevronRight, Calendar, Users, UsersRound, Target, MessageSquare, CheckCircle2, ClipboardList, Zap, Star } from "lucide-react";
+
+import { generateRecurringEvents } from "../data/roadmapData"; 
+
+// Mapping außerhalb der Komponente definieren
+const ACTIVITY_ICONS: Record<string, any> = {
+  meeting: Users,
+  community: UsersRound,
+  workshop: Calendar,
+  survey: ClipboardList,
+  action: Zap,
+  event: Star
+};
 
 interface RoadmapTimelineProps {
   data: RoadmapData;
 }
+
+
 
 export function RoadmapTimeline({ data }: RoadmapTimelineProps) {
   const [selectedItem, setSelectedItem] = useState<Task | Milestone | null>(null);
@@ -187,53 +201,80 @@ export function RoadmapTimeline({ data }: RoadmapTimelineProps) {
               </div>
             ))}
 
+
             {/* Activities */}
-            {phase.activities && phase.activities.map((activity, activityIdx) => (
-              <div key={`activity-${activityIdx}`} className="flex gap-1 items-center mt-2 relative z-10">
-                <div className="w-48 shrink-0"></div>
-                <div className="flex-1 relative h-8">
-                  <Tooltip delayDuration={300}>
-                    <TooltipTrigger asChild>
-                      <div
-                        className="absolute flex items-center cursor-pointer group"
-                        style={{
-                          left: `${getMonthPosition(activity.date)}%`,
-                        }}
-                        onClick={() => handleItemClick(activity)}
-                      >
-                        {/* Symbol aus der Legende: Quadratisch, abgerundet, grauer Rand */}
-                        <div className="w-4 h-4 rounded border-2 border-gray-400 bg-gray-50 group-hover:scale-110 group-hover:border-olive-400 transition-all shadow-sm"></div>
+            {(() => {
+              // 1. Alle generierten Termine holen
+              const allRecurring = generateRecurringEvents(2026, 3, 2027, 12);
+
+              // 2. Filtern: Passt der Termin zeitlich in das Quartal/Jahr dieser Phase?
+              const phaseRecurring = allRecurring.filter(event => {
+                const [y, m] = event.startDate.split("-").map(Number);
+                const quarterOfEvent = `Q${Math.ceil(m / 3)}`;
+                return y === phase.year && quarterOfEvent === phase.quarter;
+              });
+
+              // 3. Manuelle und generierte Aktivitäten zusammenführen
+              const combinedActivities = [
+                ...(phase.activities || []),
+                ...phaseRecurring.map(re => ({
+                  ...re,
+                  date: re.startDate // Mapping von startDate auf date für dein Layout
+                }))
+              ];
+
+              // 4. Das kombinierte Array mappen
+              return combinedActivities.map((activity, activityIdx) => {
+                const ActivityIcon = ACTIVITY_ICONS[activity.type] || MessageSquare;
+
+                return (
+                  <div key={`activity-${activityIdx}`} className="flex gap-1 items-center mt-2 relative z-10">
+                    <div className="w-48 shrink-0"></div>
+                    <div className="flex-1 relative h-8">
+                      <Tooltip delayDuration={300}>
+                        <TooltipTrigger asChild>
+                          <div
+                            className="absolute flex items-center cursor-pointer group"
+                            style={{
+                              left: `${getMonthPosition(activity.date)}%`,
+                            }}
+                            onClick={() => handleItemClick(activity as any)}
+                          >
+                            <div className="w-5 h-5 rounded border-2 border-gray-400 bg-gray-50 group-hover:scale-110 group-hover:border-olive-400 transition-all shadow-sm flex items-center justify-center">
+                              <ActivityIcon className="w-3 h-3 text-gray-500 group-hover:text-olive-600" />
+                            </div>
+                            
+                            <div className="ml-2 text-[11px] font-medium text-gray-600 group-hover:text-gray-900 whitespace-nowrap">
+                              {activity.title}
+                            </div>
+                          </div>
+                        </TooltipTrigger>
                         
-                        <div className="ml-2 text-sm font-medium text-gray-600 group-hover:text-gray-900 whitespace-nowrap">
-                          {activity.title}
-                        </div>
-                      </div>
-                    </TooltipTrigger>
-                    <TooltipContent side="top" className="w-auto max-w-sm p-3 bg-slate-900 shadow-xl border border-gray-200">
-                      <div className="space-y-2">
-                        <div className="flex items-center justify-between border-b pb-1">
-                          <p className="font-bold text-white leading-tight">
-                            {activity.title}
-                          </p>
-                          <span className="ml-4 text-[10px] font-bold uppercase px-1.5 py-0.5 bg-gray-100 text-gray-500 rounded whitespace-nowrap">
-                            {activity.type}
-                          </span>
-                        </div>
-                        <p className="text-sm text-white leading-snug">
-                          {activity.description}
-                        </p>
-                        <div className="text-[10px] text-white font-mono italic">
-                          {activity.date}
-                        </div>
-                        <div className="text-[10px] bg-gray-800 px-1.5 py-0.5 rounded text-gray-400">
-                            Klicken für Details
-                        </div>
-                      </div>
-                    </TooltipContent>
-                  </Tooltip>
-                </div>
-              </div>
-            ))}
+                        <TooltipContent side="top" className="w-auto max-w-sm p-3 bg-slate-900 shadow-xl border border-gray-700">
+                          <div className="space-y-2">
+                            <div className="flex items-center justify-between border-b border-slate-700 pb-1.5">
+                              <p className="font-bold text-white leading-tight">
+                                {activity.title}
+                              </p>
+                              <span className="ml-4 text-[10px] font-bold uppercase px-1.5 py-0.5 bg-slate-800 text-olive-400 rounded border border-olive-900/50 whitespace-nowrap">
+                                {activity.type}
+                              </span>
+                            </div>
+                            <p className="text-sm text-slate-300 leading-snug">
+                              {activity.description}
+                            </p>
+                            <div className="flex justify-between items-center text-[10px] text-slate-500 font-mono italic pt-1">
+                              <span>{activity.date}</span>
+                              <span className="bg-slate-800 px-1.5 py-0.5 rounded text-slate-400">Klicken für Details</span>
+                            </div>
+                          </div>
+                        </TooltipContent>
+                      </Tooltip>
+                    </div>
+                  </div>
+                );
+              });
+            })()}
           </div>
         ))}
 

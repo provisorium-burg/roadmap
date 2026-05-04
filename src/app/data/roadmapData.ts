@@ -1,5 +1,84 @@
 import { RoadmapData } from "../components/types/roadmap";
 
+// Hilfsfunktion zur automatischen Erstellung der monatlichen Termine
+
+export const generateRecurringEvents = (startYear: number, startMonth: number, endYear: number, endMonth: number) => {
+  const events: any[] = [];
+  let curY = startYear;
+  let curM = startMonth;
+  let monthCounter = 0; // Zähler für den Wechsel-Rhythmus
+
+  while (curY < endYear || (curY === endYear && curM <= endMonth)) {
+    const dateStr = `${curY}-${curM.toString().padStart(2, '0')}`;
+    
+    // WECHSEL-LOGIK: 
+    // Monat A (gerade): Jour Fixe
+    // Monat B (ungerade): Stammtisch (außer Ferien)
+    
+    if (monthCounter % 2 === 0) {
+      // JEDEN 2. MONAT: Jour Fixe
+      events.push({
+        id: `jf-${dateStr}`,
+        title: "Jour fixe: AG Nachhaltigkeit",
+        startDate: dateStr,
+        endDate: dateStr,
+        type: "meeting",
+        category: "Governance",
+        description: "Regelmäßiges Kernteam-Treffen (Turnus A)."
+      });
+    } else {
+      // DER JEWEILS ANDERE MONAT: Stammtisch (mit Ferien-Check)
+      if (curM !== 8 && curM !== 3) {
+        events.push({
+          id: `st-${dateStr}`,
+          title: "Stammtisch Nachhaltigkeit",
+          startDate: dateStr,
+          endDate: dateStr,
+          type: "community",
+          category: "Community",
+          description: "Offener Austausch (Turnus B - versetzt zum Jour Fixe)."
+        });
+      }
+    }
+
+    // --- Weitere Fixtermine (unabhängig vom Wechsel) ---
+    
+    // Halbjährliche Umfrage (Juni & Dezember)
+    if (curM === 6 || curM === 12) {
+      events.push({
+        id: `sr-${dateStr}`,
+        title: "Campus-Umfrage",
+        startDate: dateStr,
+        endDate: dateStr,
+        type: "survey",
+        category: "Forschung",
+        description: "Stimmungsbild der Hochschule."
+      });
+    }
+
+    // Quartalsweise Aktion (Jan, Apr, Juli, Okt)
+    if (curM % 3 === 1) {
+      events.push({
+        id: `ad-${dateStr}`,
+        title: "Reallabor Action-Day",
+        startDate: dateStr,
+        endDate: dateStr,
+        type: "action",
+        category: "Infrastruktur",
+        description: "Praktische Umsetzung vor Ort."
+      });
+    }
+
+    curM++;
+    monthCounter++; // Wichtig für den Wechsel im nächsten Schleifendurchlauf
+    if (curM > 12) { curM = 1; curY++; }
+  }
+  return events;
+};
+
+// const recurringEvents = generateRecurringEvents(2026, 3, 2027, 12);
+
+
 export const roadmapData: RoadmapData = {
   projectTitle: "Provisorium – Hochschule als Reallabor für Nachhaltigkeit",
   duration: "März 2026 - Dezember 2027",
@@ -11,15 +90,15 @@ export const roadmapData: RoadmapData = {
       tasks: [
         {
           title: "Stakeholder-Analyse & Projektteam-Aufbau",
-          description: "Identifikation und Einbindung aller Statusgruppen (Studierende, Lehrende, Verwaltung, Werkstätten, Mensateam, Bibliothek) von allen drei Standorten (Campus Design, Campus Kunst, Hermes-Gebäude). Aufbau eines interdisziplinären Kernteams.",
+          description: "Identifikation und Einbindung aller Statusgruppen (Studierende, Lehrende, Verwaltung, Werkstätten, Mensateam, Bibliothek) von allen drei Standorten (Campus Design, Campus Kunst, Hermes-Gebäude). Aufbau des Kernteams.",
           category: "Governance",
           startDate: "2026-03",
           endDate: "2026-04",
-          status: "planned",
+          status: "completed",
           team: ["Projektteam", "Projektleiterin - Rektoratsprojekte", "Verwaltung", "Studierende"],
           deliverables: [
             "Stakeholder-Map aller Standorte",
-            "Projektteam mit allen Statusgruppen",
+            "Vorstellung des Projektteams bei allen Statusgruppen",
             "Kommunikationsplan für drei Standorte"
           ]
         },
@@ -28,8 +107,8 @@ export const roadmapData: RoadmapData = {
           description: "Umfassende Analyse des Status Quo an Campus Design, Campus Kunst und Hermes-Gebäude. Einbeziehung von Werkstätten, Mensa, Bibliothek, Grün- und Freiflächen. Identifikation hochschul-spezifischer Handlungsfelder.",
           category: "Forschung",
           startDate: "2026-03",
-          endDate: "2026-05",
-          status: "planned",
+          endDate: "2026-06",
+          status: "in-progress",
           team: ["Lehre", "Studierende", "Werkstattleitende", "Mensapersonal"],
           deliverables: [
             "Standort-spezifische Ist-Analysen",
@@ -58,7 +137,7 @@ export const roadmapData: RoadmapData = {
       ],
       activities: [        
         {
-          title: "Projektstart",
+          title: "Jour fixe",
           date: "2026-03",
           type: "meeting",
           description: "Treffen der AG Nachhaltigkeit"
@@ -82,7 +161,7 @@ export const roadmapData: RoadmapData = {
           category: "Governance",
           startDate: "2026-04",
           endDate: "2026-07",
-          status: "planned",
+          status: "in-progress",
           team: ["Alle Statusgruppen", "Projektteam", "Moderationsteam"],
           deliverables: [
             "Partizipativer Entwicklungsprozess mit allen Standorten",
@@ -91,15 +170,17 @@ export const roadmapData: RoadmapData = {
           ]
         },
         {
-          title: "Entwicklung Nachhaltigkeitsstrategie",
+        /*  title: "Erarbeitung einer Beschlussvorlage für den Senat: Nachhaltigkeitsstrategie",*/
+          title: "Erarbeitung einer Beschlussvorlage für den Senat: Nachhaltigkeitsstrategie",
           description: "Erarbeitung einer ganzheitlichen Nachhaltigkeitsstrategie für die Hochschule mit konkreten Zielen und Maßnahmen.",
           category: "Governance",
           startDate: "2026-07",
           endDate: "2027-08",
           status: "planned",
-          team: ["Strategieteam", "Externe Berater"],
+          team: ["Provisorium", "KlimaPlanReali"],
           deliverables: [
-            "Nachhaltigkeitsstrategie",
+          /*  "Nachhaltigkeitsstrategie", */
+            "Beschlussvorlage: Nachhaltigkeitsstrategie",
             "Zielkatalog",
             "Maßnahmenplan"
           ],
@@ -226,7 +307,7 @@ export const roadmapData: RoadmapData = {
           dependencies: ["Interventionskonzept entwickelt"]
         },
         {
-          title: "Künstlerische Nachhaltigkeitsprojekte",
+          title: "Nachhaltigkeitsprojekte: Künst",
           description: "Start kunstbasierter Nachhaltigkeitsprojekte in Kooperation mit Studierenden und Lehrenden: Upcycling-Kunst, ökologische Installationen, partizipative Design-Projekte an allen drei Standorten.",
           category: "Lehre",
           startDate: "2026-05",
@@ -285,7 +366,7 @@ export const roadmapData: RoadmapData = {
           title: "Nachhaltigkeits-Monitoring etablieren",
           description: "Aufbau eines Monitoring-Systems zur kontinuierlichen Erfassung von Nachhaltigkeitskennzahlen.",
           category: "Governance",
-          startDate: "2027-02",
+          startDate: "2026-04",
           endDate: "2027-06",
           status: "planned",
           team: ["Controlling", "Datenanalyse"],
@@ -330,21 +411,22 @@ export const roadmapData: RoadmapData = {
       activities: [
         {
         title: "Mensa-Abfall-Audit",
-        date: "2026-04",
+        date: "2026-05",
         type: "survey",
         description: "Gemeinsame Sortierung und Analyse der Speisereste mit dem Mensateam zur Optimierung der Portionsgrößen."
         },
         {
         title: "Workshop: Zirkuläre Werkstatt",
-        date: "2026-05",
+        date: "2026-06",
         type: "workshop",
         description: "Praktische Erarbeitung von Materialkreisläufen (z. B. Holz- oder Kunststoffreste) zwischen den Ateliers und Werkstätten."
         },
         {
-        title: "Installation Campus-Sharing-Point",
-        date: "2026-05",
+        title: "Pilotstart: Dezentrale Campus-Sharing-Hubs",
+        date: "2026-06",
         type: "event",
-        description: "Aufbau einer physischen Tauschbörse für Materialien und Werkzeuge am Campus Design."
+        description: "Partizipativer Roll-out der ersten dezentralen Sharing-Stationen: Anstatt die Standorte vorab festzulegen, werden die drei Pilotstandorte der Hochschule in einem kooperativen Prozess mit den Nutzer:innen ermittelt. Durch ein digitales Voting-Tool (oder Vor-Ort-Workshops) können Studierende und Beschäftigte Bedarfe anmelden und über die finalen Standorte mitentscheiden. Dies sichert eine optimale Integration in den Campus-Alltag."
+       /* "Roll-out der ersten dezentralen Sharing-Stationen an drei strategischen Pilotstandorten der Hochschule (N.N.). Im Rahmen des Reallabors testen wir ein smartes Schließfachsystem, das allen Campus-Mitgliedern den einfachen Verleih von Alltagsgegenständen, Technik-Equipment und Sporttools per Campus-Card ermöglicht. Ziel ist es, Barrieren abzubauen, die Nachhaltigkeitskultur direkt im Uni-Alltag zu verankern und durch die dezentrale Struktur die Wegezeiten für die Nutzer zu minimieren."*/
         },
         {
           title: "Nutzer-Interviews & Survey",

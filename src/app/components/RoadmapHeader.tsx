@@ -58,10 +58,8 @@ export function RoadmapHeader({ projectTitle, duration }: RoadmapHeaderProps) {
         <h2 className="text-xl font-semibold text-gray-900 mb-3">Der Fahrplan</h2>
         <p className="text-gray-700 leading-relaxed">
           Diese interaktive Roadmap visualisiert den zeitlichen Ablauf unseres Nachhaltigkeitsprojekts.
-          Die Burg wird als Ganzes hochschulweit zum Experimentierfeld - von der Mensa über die
-          Werkstätten bis zu den Grünflächen. Alle drei Standorte (Campus Design, Campus Kunst, Hermes-Gebäude)
-          und alle Hochschulangehörigen sind eingebunden. Die Roadmap zeigt, wie wir in 22 Monaten durch
-          5 Projektphasen hindurch konkrete Maßnahmen in 6 verschiedenen Bereichen umsetzen.
+          Die Burg wird als Ganzes hochschulweit zum Experimentierfeld - von der Mensa über die Werkstätten bis zu den Grünflächen. Alle drei Standorte (Campus Design, Campus Kunst, Hermes-Gebäude)
+          und alle Hochschulangehörigen sind eingebunden. Die Roadmap zeigt, wie wir in 22 Monaten durch 5 Projektphasen hindurch konkrete Maßnahmen in 6 verschiedenen Bereichen umsetzen.
         </p>
       </div>
 
