@@ -260,15 +260,15 @@ export const roadmapData: RoadmapData = {
           description: "Alle Konzepte finalisiert und freigegeben"
         },
         {
-          title: "Strategie verabschiedet",
+          title: "Beschlussvorlage für den Senat Nachhaltigkeitsstrategie",
           date: "2027-08",
-          description: "Nachhaltigkeitsstrategie vom Senat verabschiedet"
+          description: "Beschlussvorlage zur Verabschiedung einer Nachhaltigkeitsstrategie durch den Senat"
         }
       ],
       activities: [        
         {
           title: "👥 Statusgruppen-Vernetzung",
-          date: "2026-04",
+          date: "2026-05",
           type: "meeting",
           description: "Erstes Treffen der Vertreter aus Werkstätten, Mensa und Verwaltung."
         },
@@ -292,7 +292,7 @@ export const roadmapData: RoadmapData = {
    // year: 0,  Markierung, dass kein extra Jahr angehängt werden soll (2026 - 2027)
       tasks: [
         {
-          title: "Transformation Werkstätten, Mensa & Grünflächen",
+          title: "Pilotmaßnahmen: Werkstätten, Mensa & Grünflächen",
           description: "Nachhaltigkeitsinterventionen an allen drei Standorten: Beispielhafte Pilotmaßnahmen zur Umgestaltung der Werkstätten unter nachhaltigen Gesichtspunkten, Transformation der Mensa zu nachhaltigem Gastronomiebetrieb, Begrünung und ökologische Aufwertung der Freiflächen an Campus Design, Campus Kunst und Hermes-Gebäude.",
           category: "Infrastruktur",
           startDate: "2026-04",
@@ -349,7 +349,7 @@ export const roadmapData: RoadmapData = {
           ]
         },
         {
-          title: "Hochschulweite Nachhaltigkeits-Aktivierungen",
+          title: "Hochschulweite Aktivierung",
           description: "Regelmäßige standortübergreifende Aktionen an Campus Design, Campus Kunst und Hermes-Gebäude: Repair Cafés, Tauschbörsen, Nachhaltigkeitswochen, Kleidertausch, künstlerische Interventionen im öffentlichen Raum.",
           category: "Community",
           startDate: "2026-04",
