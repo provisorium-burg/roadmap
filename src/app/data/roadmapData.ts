@@ -170,7 +170,7 @@ export const roadmapData: RoadmapData = {
           ]
         },
         {
-        /*  title: "Erarbeitung einer Beschlussvorlage für den Senat: Nachhaltigkeitsstrategie",*/
+        /*  title: "Entwicklung Nachhaltigkeitsstrategie",*/
           title: "Erarbeitung einer Beschlussvorlage für den Senat: Nachhaltigkeitsstrategie",
           description: "Erarbeitung einer ganzheitlichen Nachhaltigkeitsstrategie für die Hochschule mit konkreten Zielen und Maßnahmen.",
           category: "Governance",
